@@ -24,19 +24,16 @@ pipeline {
                     echo "Current path is ${pwd()}"
                     echo "Create Container of docker-compose"
                     sh "docker-compose up -d"
-                    sh "docker build -t chanapon/vote_cat_dog:1.0 ."
-                    sh "docker push chanapon/vote_cat_dog:1.0"
                 }
             }
         }
-        
+
         stage('Push To Dockerhub') {
             steps {
                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
                     echo "Push Image To Dockerhub"
                     // withCredentials([usernamePassword(credentialsId: 'dckr_pat_8HklhCw27evFKot9bJF6GZcGChM', usernameVariable: 'chanapon', passwordVariable: 'Kong0')]) {
-                    sh 'docker-compose push'
                 }
                 }
             }
