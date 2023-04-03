@@ -7,7 +7,7 @@ pipeline {
             steps {
             
                 echo 'Initial : Delete  containers and images'
-                 dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
                     sh "docker-compose down --rmi all --volumes || true"
                 }
@@ -15,10 +15,11 @@ pipeline {
         }
 
 
-        stage('Build Stage') {
+        stage('Build Container') {
             steps {
-                dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+                dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
+                    echo "Create Container of docker-compose"
                     sh "docker-compose up -d"
                 }
             }
@@ -29,3 +30,41 @@ pipeline {
 
     }
 }
+
+
+
+
+
+
+
+// pipeline {
+//     agent any
+
+ 
+//     stages {
+//         stage('Initialize Stage') {
+//             steps {
+            
+//                 echo 'Initial : Delete  containers and images'
+//                  dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+//                     echo "Current path is ${pwd()}"
+//                     sh "docker-compose down --rmi all --volumes || true"
+//                 }
+//             }
+//         }
+
+
+//         stage('Build Stage') {
+//             steps {
+//                 dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+//                     echo "Current path is ${pwd()}"
+//                     sh "docker-compose up -d"
+//                 }
+//             }
+//         }
+
+    
+       
+
+//     }
+// }
