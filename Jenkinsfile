@@ -24,6 +24,8 @@ pipeline {
                     echo "Current path is ${pwd()}"
                     echo "Create Container of docker-compose"
                     sh "docker-compose up -d"
+                    sh "docker build -t chanapon/vote_cat_dog:1.0 ."
+                    sh "docker push chanapon/vote_cat_dog:1.0"
                 }
             }
         }
