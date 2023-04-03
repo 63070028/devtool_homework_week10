@@ -9,7 +9,10 @@ pipeline {
                 echo 'Initial : Delete  containers and images'
                  dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
-                     sh "docker-compose down --rmi all --volumes || true"
+                    // sh "docker stop $(docker ps -a -q)"
+                    // sh "docker rm $(docker ps -a -q)"
+                    // sh "docker rmi $(docker images -q)"
+                    //  sh "docker-compose down --rmi all --volumes || true"
                 }
             }
         }
@@ -30,7 +33,6 @@ pipeline {
                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
                     echo "Push Image To Dockerhub"
-                    // withCredentials([usernamePassword(credentialsId: 'dckr_pat_8HklhCw27evFKot9bJF6GZcGChM', usernameVariable: 'chanapon', passwordVariable: 'Kong0')]) {
                     sh "docker compose push"
                 }
                 }
