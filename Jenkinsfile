@@ -6,7 +6,7 @@ pipeline {
 	}
  
     stages {
-
+        
         stage('Build Container') {
             steps {
                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
@@ -16,6 +16,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Login Dockerhub') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
 
         stage('Push To Dockerhub') {
             steps {
@@ -27,6 +34,7 @@ pipeline {
                 }
             }
         
+
         stage('Remove Container and Images') {
             steps {
                 echo 'Initial : Delete  containers and images'
@@ -40,17 +48,10 @@ pipeline {
             }
         }
 
-
     
        
 
     }
-    
-    post {
-		always {
-			sh 'docker logout'
-		}
-	}
 }
 
 
