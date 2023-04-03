@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
  
     stages {
         stage('Initialize Stage') {
@@ -43,6 +46,12 @@ pipeline {
        
 
     }
+    
+    post {
+		always {
+			sh 'docker logout'
+		}
+	}
 }
 
 
