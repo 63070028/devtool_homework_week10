@@ -11,6 +11,7 @@ pipeline {
             steps {
                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
+                    sh "docker-compose down --rmi all --volumes || true"
                     echo "Create Container of docker-compose"
                     sh "docker-compose up -d"
                 }
@@ -35,13 +36,9 @@ pipeline {
             }
         
 
-        stage('Remove Container and Images') {
+        stage('Build Production') {
             steps {
-                echo 'Initial : Delete  containers and images'
-                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins s
-                    echo "Current path is ${pwd()}"
-                    sh "docker-compose down --rmi all --volumes || true"
-                }
+                build job: 'production_pipeline';
             }
         }
 
