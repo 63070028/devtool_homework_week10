@@ -43,7 +43,6 @@ services:
       - back-tier
 
   worker:
-    image: chanapon/worker:1.0
     build:
       context: ./worker
     depends_on:
@@ -82,7 +81,6 @@ services:
   # it won't run unless you specify the "seed" profile
   # docker compose --profile seed up -d
   seed:
-    image: chanapon/seed-data:1.0
     build: ./seed-data
     profiles: ["seed"]
     depends_on:
