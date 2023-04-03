@@ -34,6 +34,7 @@ pipeline {
                     echo "Current path is ${pwd()}"
                     echo "Push Image To Dockerhub"
                     // withCredentials([usernamePassword(credentialsId: 'dckr_pat_8HklhCw27evFKot9bJF6GZcGChM', usernameVariable: 'chanapon', passwordVariable: 'Kong0')]) {
+                    sh "docker compose push"
                 }
                 }
             }
