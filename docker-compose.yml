@@ -5,7 +5,7 @@
 services:
   vote:
     build: ./vote
-    image: chanapon/vote:1.0
+    image: chanapon/vote:2.0
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -27,7 +27,7 @@ services:
 
   result:
     build: ./result
-    image: chanapon/result:1.0
+    image: chanapon/result:2.0
     # use nodemon rather than node for local dev
     entrypoint: nodemon server.js
     depends_on:
@@ -43,7 +43,7 @@ services:
       - back-tier
 
   worker:
-    image: chanapon/worker:1.0
+    image: chanapon/worker:2.0
     build:
       context: ./worker
     depends_on:
@@ -82,7 +82,6 @@ services:
   # it won't run unless you specify the "seed" profile
   # docker compose --profile seed up -d
   seed:
-    image: chanapon/seed-data:1.0
     build: ./seed-data
     profiles: ["seed"]
     depends_on:
