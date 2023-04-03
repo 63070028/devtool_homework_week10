@@ -41,9 +41,6 @@ pipeline {
                  dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins s
                     echo "Current path is ${pwd()}"
                     sh "docker-compose down --rmi all --volumes || true"
-                    sh "docker stop \$(docker ps -a -q)"
-                    sh "docker rm \$(docker ps -a -q)"
-                    sh "docker rmi \$(docker images -q)"
                 }
             }
         }
@@ -52,6 +49,14 @@ pipeline {
        
 
     }
+
+    post {
+		always {
+			sh 'docker logout'
+		}
+	}
+    
+
 }
 
 
