@@ -9,7 +9,9 @@ pipeline {
                 echo 'Initial : Delete  containers and images'
                  dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
                     echo "Current path is ${pwd()}"
-                    sh "docker-compose down --rmi all --volumes || true"
+                    sh "docker stop $(docker ps -a -q)"
+                    sh "docker rm $(docker ps -a -q)"
+                    sh "docker rmi $(docker images -q)"
                 }
             }
         }
