@@ -29,9 +29,8 @@ pipeline {
         
         stage('Remove Container and Images') {
             steps {
-            
                 echo 'Initial : Delete  containers and images'
-                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
+                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins s
                     echo "Current path is ${pwd()}"
                     sh "docker stop $(docker ps -a -q)"
                     sh "docker rm $(docker ps -a -q)"
