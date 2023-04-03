@@ -1,37 +1,57 @@
 pipeline {
     agent any
+    stages {
+        stage('Clean Up Docker Environment') {
+            steps {
+                script {
+                    def imageExists = sh(returnStatus: true, script: "docker images")
+                    if (imageExists == 0) {
+                        echo "Docker images exist, deleting..."
+                        sh "docker rmi -f $(docker images -q)"
+                    } else {
+                        echo "No Docker images found"
+                    }
+                }
+            }
+        }
+        // Other stages in the pipeline
+    }
+}
+
+// pipeline {
+//     agent any
 
  
-    stages {
-        stage('Initialize Stage') {
-            steps {
+//     stages {
+//         stage('Initialize Stage') {
+//             steps {
             
-                echo 'Initial : Delete  containers and images'
-                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
-                    echo "Current path is ${pwd()}"
-                    sh "docker stop $(docker ps -a -q)"
-                    sh "docker rm $(docker ps -a -q)"
-                    sh "docker rmi $(docker images -q)"
-                }
-            }
-        }
+//                 echo 'Initial : Delete  containers and images'
+//                  dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
+//                     echo "Current path is ${pwd()}"
+//                     sh "docker stop $(docker ps -a -q)"
+//                     sh "docker rm $(docker ps -a -q)"
+//                     sh "docker rmi $(docker images -q)"
+//                 }
+//             }
+//         }
 
 
-        stage('Build Container') {
-            steps {
-                dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
-                    echo "Current path is ${pwd()}"
-                    echo "Create Container of docker-compose"
-                    sh "docker-compose up -d"
-                }
-            }
-        }
+//         stage('Build Container') {
+//             steps {
+//                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
+//                     echo "Current path is ${pwd()}"
+//                     echo "Create Container of docker-compose"
+//                     sh "docker-compose up -d"
+//                 }
+//             }
+//         }
 
     
        
 
-    }
-}
+//     }
+// }
 
 
 
