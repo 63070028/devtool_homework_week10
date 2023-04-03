@@ -4,8 +4,7 @@
 
 services:
   vote:
-    build: ./vote
-    image: chanapon/vote:1.0
+    image: chanapon/vote
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -26,8 +25,7 @@ services:
       - back-tier
 
   result:
-    build: ./result
-    image: chanapon/result:1.0
+    image: chanapon/result
     # use nodemon rather than node for local dev
     entrypoint: nodemon server.js
     depends_on:
@@ -43,8 +41,7 @@ services:
       - back-tier
 
   worker:
-    build:
-      context: ./worker
+    image: chanapon/worker
     depends_on:
       redis:
         condition: service_healthy 
