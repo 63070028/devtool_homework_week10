@@ -6,20 +6,6 @@ pipeline {
 	}
  
     stages {
-        stage('Initialize Stage') {
-            steps {
-            
-                echo 'Initial : Delete  containers and images'
-                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
-                    echo "Current path is ${pwd()}"
-                    // sh "docker stop $(docker ps -a -q)"
-                    // sh "docker rm $(docker ps -a -q)"
-                    // sh "docker rmi $(docker images -q)"
-                    //  sh "docker-compose down --rmi all --volumes || true"s
-                }
-            }
-        }
-
 
         stage('Build Container') {
             steps {
@@ -30,12 +16,6 @@ pipeline {
                 }
             }
         }
-        stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
 
         stage('Push To Dockerhub') {
             steps {
@@ -47,6 +27,19 @@ pipeline {
                 }
             }
         
+        stage('Remove Container and Images') {
+            steps {
+            
+                echo 'Initial : Delete  containers and images'
+                 dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
+                    echo "Current path is ${pwd()}"
+                    sh "docker stop $(docker ps -a -q)"
+                    sh "docker rm $(docker ps -a -q)"
+                    sh "docker rmi $(docker images -q)"
+                }
+            }
+        }
+
 
     
        
