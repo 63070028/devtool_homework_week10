@@ -29,6 +29,18 @@ pipeline {
                 }
             }
         }
+        
+        stage('Push To Dockerhub') {
+            steps {
+                dir('devtool_homework_week10') { // change directory to Lab_docker_Jenkins
+                    echo "Current path is ${pwd()}"
+                    echo "Push Image To Dockerhub"
+                    // withCredentials([usernamePassword(credentialsId: 'dckr_pat_8HklhCw27evFKot9bJF6GZcGChM', usernameVariable: 'chanapon', passwordVariable: 'Kong0')]) {
+                    sh 'docker-compose push'
+                }
+                }
+            }
+        }
 
     
        
