@@ -16,7 +16,11 @@
 
 
                 node('slave'){
+                    stage('Sent to Slaves to Build') {
+            steps {
                     echo "Current path is ${pwd()}"
                     echo "Create Container of docker-compose"
-                    // sh "docker-compose up -d"
+                    sh "docker-compose up -d"
+            }
+                }
                 }
