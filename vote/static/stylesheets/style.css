@@ -28,8 +28,8 @@ button i{
 }
 
 button.a{
-  /* background-color: hsl(27, 94%, 54%); */
-  background-color: #1aaaf8;
+  background-color: hsl(27, 94%, 54%);
+  /* background-color: #1aaaf8; */
 }
 
 button.b{
@@ -100,8 +100,8 @@ button.b{
 }
 
 #choice button.a:hover{
-  /* background-color: hsl(27, 94%, 54%); */
-  background-color: #1aaaf8;
+  background-color: hsl(27, 94%, 54%);
+  /* background-color: #1aaaf8; */
 }
 
 #choice button.b:hover{
@@ -109,8 +109,8 @@ button.b{
 }
 
 #choice button.a:focus{
-  /* background-color: hsl(27, 94%, 54%); */
-  background-color: #1aaaf8;
+  background-color: hsl(27, 94%, 54%);
+  /* background-color: #1aaaf8; */
 }
 
 #choice button.b:focus{
