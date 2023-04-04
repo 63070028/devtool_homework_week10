@@ -1,5 +1,21 @@
-node('slave'){
-    echo "Current path is ${pwd()}"
-    echo "Create Container of docker-compose"
-    sh "docker-compose up -d"
+pipeline {
+    agent {label 'slave'}
+    stages {
+        stage('Sent to Slaves to Build') {
+            steps {
+                node('slave'){
+                    echo "Current path is ${pwd()}"
+                    echo "Create Container of docker-compose"
+                    // sh "docker-compose up -d"
+                }
+            }
+        }
+    }
 }
+
+
+                // node('slave'){
+                //     echo "Current path is ${pwd()}"
+                //     echo "Create Container of docker-compose"
+                //     sh "docker-compose up -d"
+                // }
