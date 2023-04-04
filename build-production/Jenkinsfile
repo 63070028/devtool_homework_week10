@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Sent to Slaves to Build') {
             steps {
-                node('slave') {
+                node('slave'){
                     stage('Building') {
                         dir('devtool_homework_week10/build-production') { 
                             echo "Current path is ${pwd()}"
@@ -13,6 +13,7 @@ pipeline {
                         }
                     }
                 }
+            
             }
         }
     }
