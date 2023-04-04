@@ -6,7 +6,7 @@ pipeline {
                 node('slave'){
                     echo "Current path is ${pwd()}"
                     echo "Create Container of docker-compose"
-                    // sh "docker-compose up -d"
+                    sh "docker-compose up -d"
                 }
             }
         }
