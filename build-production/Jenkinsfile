@@ -4,19 +4,16 @@ pipeline {
     stages {
         stage('Sent to Slaves to Build') {
             steps {
-                node('slave'){
+                node('slave') {
                     stage('Building') {
-                        dir('devtool_homework_week10/build-production') { // change directory to Lab_docker_Jenkins
-                        echo "Current path is ${pwd()}"
-                        echo "Create Container of docker-compose"
-                        sh "docker-compose up -d"
+                        dir('devtool_homework_week10/build-production') { 
+                            echo "Current path is ${pwd()}"
+                            echo "Create Container of docker-compose"
+                            sh "docker-compose up -d"
+                        }
                     }
                 }
-            
             }
         }
     }
 }
-}
-
-
