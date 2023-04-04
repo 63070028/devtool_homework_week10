@@ -52,9 +52,6 @@ pipeline {
             }
         }
 
-    
-       
-
     }
 
     post {
@@ -65,6 +62,3 @@ pipeline {
     
 
 }
-
-
-//s
