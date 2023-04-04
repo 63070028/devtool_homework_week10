@@ -46,7 +46,7 @@ pipeline {
             }
         
 
-        stage('Build Production') {
+        stage('Send to Slave build in Production') {
             steps {
                 build job: 'production_pipeline';
             }
